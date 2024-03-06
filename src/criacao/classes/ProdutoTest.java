@@ -80,7 +80,20 @@ class ProdutoTest {
     }
 
     @Test
-    void testEquals() {
-        //
+    void testEquals() throws Exception {
+        Assertions.assertEquals(new Produto("Sabao Liquido", 12.94, 5032), produto);
+        Produto produto2 = produto;
+        Assertions.assertEquals(produto2, produto);
+        Assertions.assertNotEquals(new Produto("Sabao Liquido", 12.94, 5033), produto);
+    }
+
+    @Test
+    void TestConstrutor() {
+        try {
+            Produto produto1 = new Produto(null, 0, 0);
+            Assertions.fail("Devia ter lancado excecao");
+        } catch (Exception exception) {
+            Assertions.assertEquals("Nome nao pode ser nulo ou vazio.", exception.getMessage());
+        }
     }
 }
