@@ -41,7 +41,8 @@ public class Produto {
     }
 
     public void setCodigo(long codigo) {
-        this.codigo = codigo;
+        if(codigo >= 0 && codigo <= 99999)
+            this.codigo = codigo;
     }
 
     @Override

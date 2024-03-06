@@ -56,15 +56,27 @@ class ProdutoTest {
     @Test
     void setCodigo() {
         //testa se o valor inicial esta correto
+        Assertions.assertEquals(5032, produto.getCodigo());
         //muda o codigo para 99999
+        produto.setCodigo(99999);
         //testa que o codigo é 99999
+        Assertions.assertEquals(99999, produto.getCodigo());
         //muda codigo para 100000
+        produto.setCodigo(100000);
         //testa que o codigo é 99999
+        Assertions.assertEquals(99999, produto.getCodigo());
+        //muda codigo para 0
+        produto.setCodigo(0);
+        //testa que o codigo é 0
+        Assertions.assertEquals(0, produto.getCodigo());
         //muda codigo para -1
-        //testa que o codigo é 99999
+        produto.setCodigo(-1);
+        //testa que o codigo é 0
+        Assertions.assertEquals(0, produto.getCodigo());
         //muda codigo para 99998
+        produto.setCodigo(99998);
         //testa que o codigo é 99998
-
+        Assertions.assertEquals(99998, produto.getCodigo());
     }
 
     @Test
