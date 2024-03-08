@@ -17,6 +17,7 @@ public class Main {
         System.out.println("DEU TUDO CERTO!");
     }
 
+
     private static String recebeNome(Scanner sc) {
         System.out.println("informe o  nome do produto");
         return sc.nextLine();

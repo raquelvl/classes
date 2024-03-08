@@ -17,83 +17,92 @@ class ProdutoTest {
     @Test
     void setNome() {
         //testa se nome atual está correto
-        Assertions.assertEquals("Sabao", produto.getNome());
+        assertEquals("Sabao", produto.getNome());
 
         //muda o nome atual para Sabao liquido
         produto.setNome("Sabao liquido");
 
         //testa se o novo nome do produto é Sabao liquido
-        Assertions.assertEquals("Sabao liquido", produto.getNome());
+        assertEquals("Sabao liquido", produto.getNome());
 
         //muda o nome do produto para null
         produto.setNome(null);
 
         //testa que continua xpto
-        Assertions.assertEquals("Sabao liquido", produto.getNome());
+        assertEquals("Sabao liquido", produto.getNome());
 
         produto.setNome("  ");
-        Assertions.assertEquals("Sabao liquido", produto.getNome());
+        assertEquals("Sabao liquido", produto.getNome());
     }
 
     @Test
     void setPreco() {
         //testa se o preco inicial está correto
-        Assertions.assertEquals(12.93, produto.getPreco());
+        assertEquals(12.93, produto.getPreco());
         //muda preco para 0.01
         produto.setPreco(0.01);
         //testa se preco é 0.01
-        Assertions.assertEquals(0.01, produto.getPreco());
+        assertEquals(0.01, produto.getPreco());
         //muda o preço para 0
         produto.setPreco(0);
         //testa que continua 0.01
-        Assertions.assertEquals(0.01, produto.getPreco());
+        assertEquals(0.01, produto.getPreco());
         //muda o preço para -0.01
         produto.setPreco(-0.01);
         //testa que continua 0.01
-        Assertions.assertEquals(0.01, produto.getPreco());
+        assertEquals(0.01, produto.getPreco());
     }
 
     @Test
     void setCodigo() {
         //testa se o valor inicial esta correto
-        Assertions.assertEquals(5032, produto.getCodigo());
+        assertEquals(5032, produto.getCodigo());
         //muda o codigo para 99999
         produto.setCodigo(99999);
         //testa que o codigo é 99999
-        Assertions.assertEquals(99999, produto.getCodigo());
+        assertEquals(99999, produto.getCodigo());
         //muda codigo para 100000
         produto.setCodigo(100000);
         //testa que o codigo é 99999
-        Assertions.assertEquals(99999, produto.getCodigo());
+        assertEquals(99999, produto.getCodigo());
         //muda codigo para 0
         produto.setCodigo(0);
         //testa que o codigo é 0
-        Assertions.assertEquals(0, produto.getCodigo());
+        assertEquals(0, produto.getCodigo());
         //muda codigo para -1
         produto.setCodigo(-1);
         //testa que o codigo é 0
-        Assertions.assertEquals(0, produto.getCodigo());
+        assertEquals(0, produto.getCodigo());
         //muda codigo para 99998
         produto.setCodigo(99998);
         //testa que o codigo é 99998
-        Assertions.assertEquals(99998, produto.getCodigo());
+        assertEquals(99998, produto.getCodigo());
     }
 
     @Test
     void testEquals() throws Exception {
-        Assertions.assertEquals(new Produto("Sabao Liquido", 12.94, 5032), produto);
+        assertEquals(new Produto("Sabao Liquido", 12.94, 5032), produto);
         Produto produto2 = produto;
-        Assertions.assertEquals(produto2, produto);
-        Assertions.assertNotEquals(new Produto("Sabao Liquido", 12.94, 5033), produto);
+        assertEquals(produto2, produto);
+        assertNotEquals(new Produto("Sabao Liquido", 12.94, 5033), produto);
     }
 
     @Test
     void TestConstrutor() {
         try {
             Produto produto1 = new Produto(null, 0, 0);
-            Assertions.fail("Devia ter lancado excecao");
+            fail("Devia ter lancado excecao");
         } catch (Exception exception) {
-            Assertions.assertEquals("Nome nao pode ser nulo ou vazio.", exception.getMessage());
+            assertEquals("Nome nao pode ser nulo ou vazio.", exception.getMessage());
         }
+    }
+
+    @Test
+    void testConstrutor2() {
+        Exception exception = assertThrows(Exception.class, () -> {
+            Produto produto1 = new Produto(" ", 0, 0);
+        });
+
+        assertTrue("Nome nao pode ser nulo ou vazio.".equals(exception.getMessage()));
     }
 }
